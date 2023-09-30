@@ -42,13 +42,15 @@ input:focus {
     flex-wrap: wrap;
     padding-top: 110px;
 }
-#results > li {
+
+.card {
     flex: 1 0 25%;
-    min-width: 280px;
-    background: white;
     margin: 10px;
-    border-radius: 5px;
     padding: 10px 20px;
+    max-width: 280px;
+    background: white;
+    border: 1px solid #ccc;
+    border-radius: 5px;
     box-shadow: 0 1px 10px rgba(0, 0, 0, 0.084);
 }
 

@@ -21,11 +21,17 @@ function mealsDisplay() {
     } else {
         meals.length = 12;
 
-        // Créez un conteneur ul pour les éléments
-        const ul = document.createElement("ul");
+        // On crée un conteneur pour les cartes
+        const container = document.createElement("div");
+        container.id = "results"; // On utilise "results" comme conteneur
 
         meals.forEach((meal) => {
-            let ingredients = [];
+            // On crée une carte pour chaque repas
+            const bloc = document.createElement("div");
+            bloc.className = "card";
+
+            // On crée une liste ul pour les ingrédients
+            const ul = document.createElement("ul");
 
             // Il y a 20 ingrédients max, donc tant que i est inférieur à 21, on l'incrémente
             for (let i = 1; i < 21; i++) {
@@ -35,14 +41,14 @@ function mealsDisplay() {
                     let ingredient = meal[`strIngredient${i}`];
                     let measure = meal[`strMeasure${i}`];
 
-                    ingredients.push(`${ingredient} - ${measure}`);
+                    // Crée un élément li pour chaque ingrédient
+                    const liIngredient = document.createElement("li");
+                    liIngredient.textContent = `${ingredient} - ${measure}`;
+
+                    // Ajoute l'élément li à la liste ul
+                    ul.appendChild(liIngredient);
                 }
             }
-            // console.log(ingredients);
-
-            // Créez un élément li pour chaque repas
-            const li = document.createElement("li");
-            li.className = "card";
 
             const h2 = document.createElement("h2");
             h2.textContent = meal.strMeal;
@@ -54,20 +60,17 @@ function mealsDisplay() {
             img.src = meal.strMealThumb;
             img.alt = `photo ${meal.strMeal}`;
 
-            const ulIngredients = document.createElement("ul");
-            ulIngredients.textContent = ingredients.join(" - ");
+            bloc.appendChild(h2);
+            bloc.appendChild(p);
+            bloc.appendChild(img);
+            bloc.appendChild(ul);
 
-            li.appendChild(h2);
-            li.appendChild(p);
-            li.appendChild(img);
-            li.appendChild(ulIngredients);
-
-            ul.appendChild(li);
+            container.appendChild(bloc);
         });
 
-        // On remplace le contenu de results par le conteneur ul
+        // On remplace le contenu de results par le conteneur des cartes
         results.textContent = "";
-        results.appendChild(ul);
+        results.appendChild(container);
     }
 };
 
