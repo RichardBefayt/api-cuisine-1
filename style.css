@@ -39,6 +39,7 @@ input:focus {
 
 #results {
     display: flex;
+    justify-content: center;
     flex-wrap: wrap;
     padding-top: 110px;
 }
